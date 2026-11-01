@@ -138,7 +138,11 @@ export function mount(host) {
       button.querySelector(".memory-face").textContent = revealed ? motif.glyph : "🍃";
       button.querySelector(".memory-name").textContent = revealed ? motif.name : "Hidden";
       button.setAttribute("aria-label", revealed ? `${motif.name}${matched ? ", matched" : ""}` : `Hidden tile ${index + 1}`);
-      button.disabled = busy || session.paused || session.won || session.resolving || matched || session.revealed.includes(index);
+      // Keep unavailable tiles focusable during play so revealing a tile does
+      // not eject a keyboard player from the board. The session still refuses
+      // duplicate, matched and resolving selections.
+      button.disabled = busy || session.paused || session.won;
+      button.setAttribute("aria-disabled", String(button.disabled || session.resolving || matched || session.revealed.includes(index)));
     }
   }
 

@@ -29,3 +29,11 @@ npm test --prefix apps/games/04-rive-interactives/memory-garden
 The browser and account tests cover desktop/phone interaction, mismatch pause,
 save during mismatch, close/reopen, invalid files and cleanup. Physical-device
 touch, final artwork and performance measurements remain unverified.
+
+While playing with a keyboard, revealed and matched tiles remain focusable so
+that arrow-key navigation can continue. Unavailable selections are marked
+with `aria-disabled` and do not count as moves. Local registered-account tests
+completed a six-pair game using keyboard input in desktop and phone-sized
+viewports, saved and synced the result, and reopened it in a fresh browser.
+Physical touch, assistive technology, other board sizes and authored artwork
+were not verified by that test.
