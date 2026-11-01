@@ -1,0 +1,118 @@
+{
+  "category": "04-rive-interactives",
+  "id": "memory-garden",
+  "title": "Memory Garden",
+  "genre": "Animated memory puzzle",
+  "pitch": "Reveal little animated creatures, remember their positions and clear a compact board of matching pairs.",
+  "capabilities": [
+    "Multiple Rive instances/artboards in one surface",
+    "Per-tile state and animation timing",
+    "Responsive board layout"
+  ],
+  "rules": [
+    "Seeded paired deck; reveal at most two eligible tiles. Match identity is app state, not sprite equality.",
+    "A mismatch remains visible for a short active-time interval, then closes. Input during resolution is explicitly gated.",
+    "Win when every pair is matched; timers and scores are local only."
+  ],
+  "content": "Three board sizes, twelve original creature motifs and untimed practice.",
+  "state": [
+    "seeded tile identities/order",
+    "matched/revealed tile ids",
+    "pending mismatch timer",
+    "moves and active time",
+    "best results/settings"
+  ],
+  "actions": [
+    {
+      "command": "reveal",
+      "desktop": "Click tile / keyboard board navigation",
+      "phone": "Tap tile",
+      "xr": "Not applicable; plays as a flat browser app."
+    },
+    {
+      "command": "change-size",
+      "desktop": "Menu size selector",
+      "phone": "Menu size selector",
+      "xr": "Not applicable; plays as a flat browser app."
+    },
+    {
+      "command": "restart",
+      "desktop": "Restart confirmation",
+      "phone": "Restart confirmation",
+      "xr": "Not applicable; plays as a flat browser app."
+    }
+  ],
+  "rive": {
+    "asset": "memory-creatures.riv",
+    "role": "Creature faces and flips, ideally sharing immutable asset bytes while each tile has its own state.",
+    "properties": {
+      "motif": "integer 0..11",
+      "revealed": "boolean",
+      "matched": "boolean"
+    },
+    "events": [
+      "flip",
+      "match",
+      "mismatch"
+    ],
+    "states": [
+      "back",
+      "reveal",
+      "front",
+      "matched"
+    ],
+    "artboard": "Main",
+    "stateMachine": "Presentation",
+    "assetStatus": "to_author"
+  },
+  "polish": [
+    "Animation reveals never obscure tile identity",
+    "Large phone tiles and keyboard focus path",
+    "Reduced-motion instant flips"
+  ],
+  "tests": [
+    "One tile cannot match itself.",
+    "Third tap while resolving cannot reveal a third tile.",
+    "Mismatched timeout pauses in background.",
+    "Save during mismatch preserves pending pair and remaining time.",
+    "Independent tile artboards do not share mutable state.",
+    "Restart cancels old reveal callbacks."
+  ],
+  "loop": [
+    "validate reveal against phase and tile status",
+    "commit one or two revealed ids",
+    "compare logical identities",
+    "schedule bounded mismatch resolution or mark match",
+    "derive each tile artboard state",
+    "commit win when all pairs matched"
+  ],
+  "save": "Exact logical board and mismatch timer, independent of animation frame.",
+  "wave": 3,
+  "specVersion": 1,
+  "status": "planned",
+  "implementation": "not_started",
+  "runtimeTests": "not_run",
+  "engine": "Rive web runtime + application state",
+  "singlePlayer": true,
+  "phoneRequired": true,
+  "mountContract": {
+    "export": "mount",
+    "synchronous": true,
+    "returns": [
+      "element",
+      "dispose"
+    ],
+    "productionEntry": "index.mjs",
+    "suppliedEntry": "index.pseudo.mjs"
+  },
+  "xrRequired": false,
+  "riveRequired": true,
+  "riveAssetIncluded": false,
+  "documentKind": "Exact logical board and mismatch timer, independent of animation frame.",
+  "sources": [
+    "S14",
+    "S15",
+    "S16",
+    "S17"
+  ]
+}
