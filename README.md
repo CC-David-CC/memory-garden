@@ -1,47 +1,31 @@
 # Memory Garden
 
-**Animated memory puzzle · Rive web runtime + application state · single-player · phone required · flat-screen app**
+Memory Garden is a seeded, single-player matching game with 6-, 8- and
+12-pair gardens. It is a flat-screen app and does not require XR.
 
-> Planned design, not implemented or browser-tested. `index.pseudo.mjs` is an explanatory entry point, not a playable game.
+Use **Resume** to start active time, reveal two tiles at a time, and match all
+creature pairs. Mismatches close after a short active-time delay; pausing,
+changing desktop focus, minimizing, rolling up or leaving the tab freezes that
+delay. Restarting asks before discarding unsaved progress.
 
-## Experience
+Open and Save use the signed-in desktop's **My files**. Saves are `.game.json`
+logical snapshots containing the tile order, matched and revealed tiles,
+mismatch time, moves and active time. Loading validates the entire replacement
+before committing it and always restores paused. Computer imports belong in
+Files and are not exposed by this app.
 
-Reveal little animated creatures, remember their positions and clear a compact board of matching pairs.
+The final `memory-creatures.riv` artwork is not available. The app uses original
+procedural creature glyphs and labels the fallback. `src/rive/contract.mjs`
+records the required `Main` artboard, `Presentation` state machine, properties,
+triggers and visual states for later replacement. The fallback does not satisfy
+the Rive acceptance gate.
 
-## What this demonstrates
+Run the rules test with:
 
-- Multiple Rive instances/artboards in one surface
-- Per-tile state and animation timing
-- Responsive board layout
+```sh
+npm test --prefix apps/system/memory-garden
+```
 
-## Rules and complete loop
-
-- Seeded paired deck; reveal at most two eligible tiles. Match identity is app state, not sprite equality.
-- A mismatch remains visible for a short active-time interval, then closes. Input during resolution is explicitly gated.
-- Win when every pair is matched; timers and scores are local only.
-
-## Bounded polished release
-
-Three board sizes, twelve original creature motifs and untimed practice.
-
-- Animation reveals never obscure tile identity
-- Large phone tiles and keyboard focus path
-- Reduced-motion instant flips
-
-No multiplayer, accounts, server simulation or generic editor is required. Start, rules/help, play/activity, pause, outcome/goal feedback and retry must all be complete. Settings include volume/mute, reduced motion, contrast and game-specific options where meaningful. State changes occur in the game model; animations illustrate them.
-
-## Rive inside this app
-
-Creature faces and flips, ideally sharing immutable asset bytes while each tile has its own state. The requested asset is `memory-creatures.riv`; it is **not included**. See [RIVE.md](RIVE.md) for the authoring/integration contract. A placeholder or unrelated animated logo does not satisfy this requirement.
-
-## Save behavior
-
-Exact logical board and mismatch timer, independent of animation frame. See [SAVE.md](SAVE.md). Loading starts paused; resume is explicit. Restart and load cancel stale callbacks and any owned AI work.
-
-## Build sequence
-
-Implement the rule loop in [gameplay.pseudo.txt](gameplay.pseudo.txt); bind the exact app lifecycle from [index.pseudo.mjs](index.pseudo.mjs); complete [CONTROLS.md](CONTROLS.md); author/integrate [RIVE.md](RIVE.md); then satisfy [ACCEPTANCE.md](ACCEPTANCE.md). Do not add XR or a 3D engine solely to widen the technology list.
-
-Target wave: **3**. Integrator first reads [AGENTS.md](../../AGENTS.md); do not guess host APIs from symbolic helper names.
-
-Use original/licensed artwork and audio. Keep the scope small enough to polish; expand content only after the release gates pass.
+The browser and account tests cover desktop/phone interaction, mismatch pause,
+save during mismatch, close/reopen, invalid files and cleanup. Physical-device
+touch, final artwork and performance measurements remain unverified.
