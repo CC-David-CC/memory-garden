@@ -23,7 +23,7 @@ the Rive acceptance gate.
 Run the rules test with:
 
 ```sh
-npm test --prefix apps/system/memory-garden
+npm test --prefix apps/games/04-rive-interactives/memory-garden
 ```
 
 The browser and account tests cover desktop/phone interaction, mismatch pause,
