@@ -37,3 +37,7 @@ completed a six-pair game using keyboard input in desktop and phone-sized
 viewports, saved and synced the result, and reopened it in a fresh browser.
 Physical touch, assistive technology, other board sizes and authored artwork
 were not verified by that test.
+
+## Design requirements
+
+The original [design brief, controls, save rules, artwork and acceptance plans](design/README.md) are retained as reference. They describe targets; the implementation and qualification status above takes precedence.
