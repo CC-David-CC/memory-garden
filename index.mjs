@@ -135,7 +135,7 @@ export function mount(host) {
       button.classList.toggle("revealed", revealed);
       button.classList.toggle("matched", matched);
       button.style.setProperty("--motif-color", motif.color);
-      button.querySelector(".memory-face").textContent = revealed ? motif.glyph : "🍃";
+      button.querySelector(".memory-face").textContent = revealed ? motif.glyph : "?";
       button.querySelector(".memory-name").textContent = revealed ? motif.name : "Hidden";
       button.setAttribute("aria-label", revealed ? `${motif.name}${matched ? ", matched" : ""}` : `Hidden tile ${index + 1}`);
       // Keep unavailable tiles focusable during play so revealing a tile does
@@ -199,7 +199,9 @@ export function mount(host) {
     for (let index = 0; index < session.tiles.length; index++) {
       const button = make("button", "memory-tile");
       button.type = "button";
-      button.append(make("span", "memory-face", "🍃"), make("span", "memory-name", "Hidden"));
+      const face = make("span", "memory-face", "?");
+      face.setAttribute("aria-hidden", "true");
+      button.append(face, make("span", "memory-name", "Hidden"));
       button.addEventListener("click", () => reveal(index));
       button.addEventListener("keydown", event => {
         const columns = session.config.cols;

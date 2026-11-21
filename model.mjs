@@ -1,16 +1,16 @@
 export const MOTIFS = Object.freeze([
-  {name: "Moss Mouse", glyph: "🐭", color: "#9bc48b"},
-  {name: "Petal Frog", glyph: "🐸", color: "#7fbd78"},
-  {name: "Dew Snail", glyph: "🐌", color: "#d8b86e"},
-  {name: "Fern Fox", glyph: "🦊", color: "#e59b67"},
-  {name: "Pond Turtle", glyph: "🐢", color: "#76a98b"},
-  {name: "Seed Sparrow", glyph: "🐦", color: "#83afd8"},
-  {name: "Acorn Squirrel", glyph: "🐿️", color: "#bd8c5f"},
-  {name: "Moon Moth", glyph: "🦋", color: "#aa8fd3"},
-  {name: "Reed Rabbit", glyph: "🐰", color: "#e4d5ca"},
-  {name: "Honey Bee", glyph: "🐝", color: "#dfbe5c"},
-  {name: "Lantern Beetle", glyph: "🪲", color: "#72b6a0"},
-  {name: "Garden Cat", glyph: "🐈", color: "#d49a6f"},
+  {name: "Moss Mouse", glyph: "MM", color: "#9bc48b"},
+  {name: "Petal Frog", glyph: "PF", color: "#7fbd78"},
+  {name: "Dew Snail", glyph: "DS", color: "#d8b86e"},
+  {name: "Fern Fox", glyph: "FF", color: "#e59b67"},
+  {name: "Pond Turtle", glyph: "PT", color: "#76a98b"},
+  {name: "Seed Sparrow", glyph: "SS", color: "#83afd8"},
+  {name: "Acorn Squirrel", glyph: "AS", color: "#bd8c5f"},
+  {name: "Moon Moth", glyph: "MT", color: "#aa8fd3"},
+  {name: "Reed Rabbit", glyph: "RR", color: "#e4d5ca"},
+  {name: "Honey Bee", glyph: "HB", color: "#dfbe5c"},
+  {name: "Lantern Beetle", glyph: "LB", color: "#72b6a0"},
+  {name: "Garden Cat", glyph: "GC", color: "#d49a6f"},
 ]);
 
 export const SIZES = Object.freeze({
